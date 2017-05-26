@@ -1,0 +1,17 @@
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+@font-face {
+    font-family: montserrat;
+    src: '/fonts/montserrat/Montserrat-Regular.tff';
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: montserrat;
+}
