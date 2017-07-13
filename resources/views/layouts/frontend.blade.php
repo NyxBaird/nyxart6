@@ -2,18 +2,24 @@
 
 @section('assets-header')
     <style>
-        /*#headerLinks > ul {;*/
-        /*}*/
-
         #header {
+            position: fixed;
             font-size: 20px;
             width: 100%;
-            margin: 0 -10px 0 -10px;
-            padding: 0 10px 0 10px;
+            height: 30px;
+            border-bottom: 1px solid #888;
+            background: white;
+            z-index: 9999;
         }
 
         #headerLinks {
             padding: 0;
+        }
+
+        #headerLinks a,
+        #headerLinks a:hover {
+            text-decoration: none;
+            color: black;
         }
 
         #headerLinks > ul > li {
@@ -30,24 +36,39 @@
         #headerLinks > ul > li > .selected {
             border-bottom: 1px solid black;
         }
+
+        #title {
+            padding-left: 10px;
+        }
+
+        #frontendContent {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 30px);
+        }
     </style>
 @append
 
 @section('content')
-    <div id="header" class="row">
-        <div class="text-left col-xs-4">@yield('content-title')</div>
-        <div id="headerLinks" class="text-right col-xs-8">
+    <div id="header">
+        <div id="title" class="pull-left">@yield('content-title')</div>
+
+        <div id="headerLinks" class="pull-right">
             <ul>
                 @foreach($links as $link)
                     <li>
-                        <a href="{{$link->url}}" class="{{$_SERVER['REQUEST_URI']==$link->url?'selected':''}}">{{$link->title}}</a>
+                        <a href="{{$link->url}}" class="{{$_SERVER['REQUEST_URI'] == $link->url ? 'selected' : ''}}">{{$link->title}}</a>
                     </li>
                 @endforeach
             </ul>
         </div>
     </div>
 
-    @yield('frontend')
+    <div id="frontendContent">
+        @yield('frontend')
+    </div>
 
     <div id="footer"></div>
 @endsection

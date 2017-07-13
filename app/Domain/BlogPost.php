@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property $id
  * @property $title
+ * @property $slug
  * @property $body
  * @property $published_on
  * @property $created_at
@@ -36,6 +37,7 @@ class BlogPost extends Model
      */
     protected $fillable = [
         'title',
+        'slug',
         'body',
         'published_on',
     ];

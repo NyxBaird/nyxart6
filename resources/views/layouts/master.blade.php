@@ -8,8 +8,12 @@
     <title>@yield('title') - NyxArt.org</title>
 
     <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,600" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('/img/favicon.png')}}" />
 
     <!-- Styles -->
     <style>
@@ -22,6 +26,9 @@
         }
     </style>
     @yield('assets-header')
+
+    <!-- Font awesome needs to be linked in the header -->
+    <script src="https://use.fontawesome.com/2dcb39c1c0.js"></script>
 </head>
 <body>
     @yield('content')
