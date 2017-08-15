@@ -70,6 +70,6 @@ class BlogService extends Service
      */
     private function getBySlug($slug)
     {
-        return $this->model->newQuery()->where('slug', $slug)->first();
+        return $this->model->newQuery()->where('slug', urlencode(urldecode($slug)))->first();
     }
 }
