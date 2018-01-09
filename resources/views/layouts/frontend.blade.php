@@ -58,9 +58,12 @@
         <div id="headerLinks" class="pull-right">
             <ul>
                 @foreach($links as $link)
-                    <li>
-                        <a href="{{$link->url}}" class="{{$_SERVER['REQUEST_URI'] == $link->url ? 'selected' : ''}}">{{$link->title}}</a>
-                    </li>
+                    {{--This is a temporary fix cuz there's no development page yet--}}
+                    @if($link->title !== 'Development')
+                        <li>
+                            <a href="{{$link->url}}" class="{{$_SERVER['REQUEST_URI'] == $link->url ? 'selected' : ''}}">{{$link->title}}</a>
+                        </li>
+                    @endif
                 @endforeach
             </ul>
         </div>

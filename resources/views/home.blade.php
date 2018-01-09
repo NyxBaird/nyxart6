@@ -116,9 +116,11 @@
     <div id="links">
         <ul>
             @foreach($links as $link)
-                <li>
-                    <a href="{{$link->url}}" class="{{$_SERVER['REQUEST_URI']==$link->url?'selected':''}}">{{$link->title}}</a>
-                </li>
+                @if($link->title !== 'Development')
+                    <li>
+                        <a href="{{ $link->url }}" class="{{ $_SERVER['REQUEST_URI'] == $link->url ? 'selected' : '' }}">{{ $link->title }}</a>
+                    </li>
+                @endif
             @endforeach
         </ul>
     </div>

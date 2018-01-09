@@ -7,11 +7,17 @@
 
 @section('assets-header')
     <style>
-
+        body {
+            padding: 10px 20px 10px 20px !important;
+        }
     </style>
 @append
 
 @section('content')
+    <h2>
+        Hi! I know this page isn't very pretty yet, but I've been busy with work. Good about page coming soon?
+    </h2>
+
     <h1>Attributions:</h1>
     <p>
         <div>
