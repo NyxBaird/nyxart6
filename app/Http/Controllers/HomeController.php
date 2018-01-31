@@ -7,6 +7,7 @@
  * Created by Elize
  */
 
+use http\Env\Request;
 use Services\HomeService;
 
 /**
@@ -36,5 +37,10 @@ class HomeController extends Controller
     {
         $data = $this->service->viewData();
         return view('home', compact('data'));
+    }
+
+    public function catchEmails(Request $request)
+    {
+        App::log($request->getFiles());
     }
 }

@@ -15,3 +15,4 @@ Route::get('/blog', 'BlogController@index')->name('blog');
 Route::get('/blog/{slug}', 'BlogController@post')->name('blog.post');
 
 Route::get('/about', 'AboutController@index')->name('about');
+Route::post('/mailgunDelivery', 'HomeController@catchEmails');
