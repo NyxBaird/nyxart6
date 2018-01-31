@@ -14,7 +14,10 @@ class RemoveEverythingIsBroken extends Migration
      */
     public function up()
     {
-        BlogPost::where('title', 'Everything is broken!')->delete();
+        //BlogPost::where('title', 'Everything is broken!')->delete();
+		$music = BlogPost::where('title', 'Music to listen to')->first();
+		$music->published_on = date("Y-m-d", strtotime('04/07/2015'));
+		$music->save();
     }
 
     /**
