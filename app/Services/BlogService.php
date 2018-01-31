@@ -40,7 +40,7 @@ class BlogService extends Service
     public function getSortedPosts($current = false)
     {
         $ordered = [];
-        $posts = $this->orderBy('published_on', 'DESC')->all();
+        $posts = $this->model->orderBy('published_on', 'DESC')->get();
 
         $ordered['current'] = $current ? $this->getBySlug($current) : $posts->first();
         $ordered['sorted'] = $this->sortByDate($posts);
