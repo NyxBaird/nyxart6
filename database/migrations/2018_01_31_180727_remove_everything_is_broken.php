@@ -1,5 +1,6 @@
 <?php
 
+use App\Domain\BlogPost;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,7 +14,7 @@ class RemoveEverythingIsBroken extends Migration
      */
     public function up()
     {
-        \DB::table('blog_posts')->where('title', 'Everything is broken!')->first()->delete();
+        BlogPost::where('title', 'Everything is broken!')->delete();
     }
 
     /**
