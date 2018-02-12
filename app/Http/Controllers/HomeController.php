@@ -36,6 +36,7 @@ class HomeController extends Controller
     public function index()
     {
         $data = $this->service->viewData();
+
         return view('home', compact('data'));
     }
 

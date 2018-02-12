@@ -25,12 +25,14 @@ class BlogController extends Controller
     public function index()
     {
         $posts = $this->service->getSortedPosts();
+
         return view('blog', compact('posts'));
     }
 
     public function post($slug)
     {
         $posts = $this->service->getSortedPosts($slug);
+
         return view('blog', compact('posts'));
     }
 }
