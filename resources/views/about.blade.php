@@ -77,10 +77,10 @@
         </p>
 
         <p id="nyxart" style="display: none;">
-            Welcome to NyxArt! NyxArt.org is where I showcase my music and my programming.
-
-            -The Blog page is where I share my thoughts (I swear I’ll get back on that in the future)
-            -The Music page is where I showcase my music. The link just sends you to my YouTube channel, but I have plans for a dedicated, custom music page in the future.
+            Welcome to NyxArt! NyxArt.org is where I showcase my music and my programming.<br />
+            <br />
+            -The Blog page is where I share my thoughts (I swear I’ll get back on that in the future)<br />
+            -The Music page is where I showcase my music. The link just sends you to my YouTube channel, but I have plans for a dedicated, custom music page in the future.<br />
             -The Development Page is currently undergoing a major overhaul. It should be back in the very near future.
         </p>
 
