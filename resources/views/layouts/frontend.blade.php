@@ -9,7 +9,7 @@
             height: 30px;
             border-bottom: 1px solid #888;
             background: white;
-            z-index: 9999;
+            z-index: 999;
         }
 
         #headerLinks {
@@ -58,7 +58,6 @@
         <div id="headerLinks" class="pull-right">
             <ul>
                 @foreach($links as $link)
-                    {{--This is a temporary fix cuz there's no development page yet--}}
                     @if($link->title !== 'Development')
                         <li>
                             <a href="{{$link->url}}" class="{{$_SERVER['REQUEST_URI'] == $link->url ? 'selected' : ''}}">{{$link->title}}</a>
