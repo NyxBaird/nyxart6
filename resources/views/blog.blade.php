@@ -1,5 +1,6 @@
 @extends('layouts.frontend')
 
+
 @section('title')
     Blog
 @endsection

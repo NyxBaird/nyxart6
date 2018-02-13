@@ -74,5 +74,7 @@
     </div>
 
     <div id="footer"></div>
+
+    @include('layouts.spirit')
 @endsection
 
