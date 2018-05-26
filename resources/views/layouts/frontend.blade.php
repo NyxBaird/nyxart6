@@ -34,7 +34,7 @@
         }
 
         #headerLinks > ul > li > .selected {
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid {{$color}};
         }
 
         #title {
@@ -53,14 +53,17 @@
 
 @section('content')
     <div id="header">
-        <div id="title" class="pull-left">@yield('content-title')</div>
+        @yield('menu')<div id="title" class="pull-left">@yield('content-title')</div>
 
         <div id="headerLinks" class="pull-right">
             <ul>
                 @foreach($links as $link)
                     @if($link->title !== 'Development')
                         <li>
-                            <a href="{{$link->url}}" class="{{$_SERVER['REQUEST_URI'] == $link->url ? 'selected' : ''}}">{{$link->title}}</a>
+                            <a href="{{$link->url}}"
+                               class="{{strpos($_SERVER['REQUEST_URI'], $link->url) > -1 && $link->title != 'Home' ? 'selected' : ''}}">
+                                {{$link->title}}
+                            </a>
                         </li>
                     @endif
                 @endforeach
