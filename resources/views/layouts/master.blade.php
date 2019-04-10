@@ -13,7 +13,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('/img/favicon.png')}}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('/img/favicon.ico')}}" />
 
     <!-- Styles -->
     <style>

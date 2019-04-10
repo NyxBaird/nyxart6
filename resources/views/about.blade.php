@@ -27,7 +27,7 @@
         </p>
 
         <p id="nyxart" style="display: none;">
-            Welcome to NyxArt! NyxArt.org is where I showcase my music and my programming.<br />
+            Welcome to my Abysmal Wonderland (formerly NyxArt)! This is my website where I showcase my music and my programming.<br />
             <br />
             -The Blog page is where I share my thoughts (I swear I’ll get back on that in the future)<br />
             -The Music page is where I showcase my music. The link just sends you to my YouTube channel, but I have plans for a dedicated, custom music page in the future.<br />
@@ -35,7 +35,7 @@
         </p>
 
         <p id="attrs" style="display: none;">
-            NyxArt favicon made by <a href="http://www.flaticon.com/authors/silviu-runceanu" title="Silviu Runceanu">Silviu Runceanu</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+            Abysmal Wonderland was created using Laravel!
         </p>
     </div>
 @endsection
