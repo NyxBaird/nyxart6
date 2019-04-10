@@ -7,17 +7,19 @@
  * Created by Elize
  */
 
+use Services\BlogService;
+
 /**
- * Class AboutController
+ * Class BlogController
  * @package App\Http\Controllers
  */
-class AboutController extends Controller
+class DevController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('about');
+        return view('dev');
     }
 }

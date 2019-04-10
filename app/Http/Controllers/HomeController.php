@@ -40,6 +40,9 @@ class HomeController extends Controller
         return view('home', compact('data'));
     }
 
+    /**
+     * @param Request $request
+     */
     public function catchEmails(Request $request)
     {
         App::log($request->getFiles());

@@ -16,12 +16,10 @@ class HomeService
     public function viewData($key = false)
     {
         $colors = [
-//            '#d442f4', //Pink
+            '#d442f4', //Pink
             '#41bbf4', //Blue
-            '#008000', //Green
-            '#b73535', //Red
-            '#FF5733', //Orange
-            '#0000A0', //Dark Blue
+            '#cc99ff', //Light pink/purple
+            '#ccffe6', //minty green
             '#800080', //Purple
             '#736AFF', //Purple-y Blue
             '#38ACEC', //Robins egg-esque blue

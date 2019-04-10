@@ -16,13 +16,24 @@ use Services\SpiritService;
  */
 class SpiritController extends Controller
 {
+    /**
+     * @var SpiritService
+     */
     protected $service;
 
+    /**
+     * SpiritController constructor.
+     * @param SpiritService $service
+     */
     public function __construct(SpiritService $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function commandHandle(Request $request)
     {
         $command = $request->input('command');

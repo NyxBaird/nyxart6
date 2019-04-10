@@ -14,6 +14,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/blog', 'BlogController@index')->name('blog');
 Route::get('/blog/{slug}', 'BlogController@post')->name('blog.post');
 
+Route::get('/dev', 'DevController@index')->name('dev');
 Route::get('/about', 'AboutController@index')->name('about');
 Route::post('/mailgunDelivery', 'HomeController@catchEmails');
 

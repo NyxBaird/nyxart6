@@ -15,13 +15,23 @@ use Services\BlogService;
  */
 class BlogController extends Controller
 {
+    /**
+     * @var BlogService
+     */
     protected $service;
 
+    /**
+     * BlogController constructor.
+     * @param BlogService $service
+     */
     public function __construct(BlogService $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $posts = $this->service->getSortedPosts();
@@ -29,6 +39,10 @@ class BlogController extends Controller
         return view('blog', compact('posts'));
     }
 
+    /**
+     * @param $slug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function post($slug)
     {
         $posts = $this->service->getSortedPosts($slug);

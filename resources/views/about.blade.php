@@ -66,7 +66,7 @@
     <div id="sidebar" class="col-lg-3 col-md-2 col-sm-12">
         <ul>
             <li class="sidebarItem elize active">Elize</li>
-            <li class="sidebarItem nyxart">NyxArt</li>
+            <li class="sidebarItem nyxart">Abysmal Wonderland</li>
             <li class="sidebarItem attrs">Attributions</li>
         </ul>
     </div>

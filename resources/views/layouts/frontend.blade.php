@@ -1,52 +1,10 @@
 @extends('layouts.master')
 
 @section('assets-header')
+    <link href="{{ asset('css/frontend.css') }}" rel="stylesheet" />
     <style>
-        #header {
-            position: fixed;
-            font-size: 20px;
-            width: 100%;
-            height: 30px;
-            border-bottom: 1px solid #888;
-            background: white;
-            z-index: 999;
-        }
-
-        #headerLinks {
-            padding: 0;
-        }
-
-        #headerLinks a,
-        #headerLinks a:hover {
-            text-decoration: none;
-            color: black;
-        }
-
-        #headerLinks > ul > li {
-            list-style: none;
-            display: inline;
-            margin: 0 10px 0 10px;
-            padding: 0;
-        }
-
-        #headerLinks > ul > li > a:hover {
-            border-bottom: 1px solid #ccc;
-        }
-
         #headerLinks > ul > li > .selected {
             border-bottom: 1px solid {{$color}};
-        }
-
-        #title {
-            padding-left: 10px;
-        }
-
-        #frontendContent {
-            position: absolute;
-            top: 30px;
-            left: 0;
-            width: 100%;
-            height: calc(100% - 30px);
         }
     </style>
 @append
@@ -58,14 +16,12 @@
         <div id="headerLinks" class="pull-right">
             <ul>
                 @foreach($links as $link)
-                    @if($link->title !== 'Development')
-                        <li>
-                            <a href="{{$link->url}}"
-                               class="{{strpos($_SERVER['REQUEST_URI'], $link->url) > -1 && $link->title != 'Home' ? 'selected' : ''}}">
-                                {{$link->title}}
-                            </a>
-                        </li>
-                    @endif
+                    <li>
+                        <a href="{{$link->url}}"
+                           class="{{strpos($_SERVER['REQUEST_URI'], $link->url) > -1 && $link->title != 'Home' ? 'selected' : ''}}">
+                            {{$link->title}}
+                        </a>
+                    </li>
                 @endforeach
             </ul>
         </div>
