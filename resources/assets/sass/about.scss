@@ -1,0 +1,71 @@
+/*overwrite our header styles*/
+body {
+  background-color: #d8ecff;
+}
+
+#header {
+  background-color: #006 !important;
+  border-color: #33001a !important;
+  color: #ffe6ff !important;
+}
+#headerLinks a,
+#headerLinks a:hover {
+  text-decoration: none;
+  color: #ffe6ff !important;
+}
+
+
+/*about page stuff*/
+#frontendContent {
+  margin: auto;
+}
+
+#sidebar {
+  position: relative;
+  float: left;
+  border-right: solid 1px #ccc;
+  height: 100%;
+  padding: 0;
+
+  ul {
+    list-style: none;
+    padding: 0px;
+    font-size: 20px;
+
+    li {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 30px 10px 30px;
+      cursor: pointer;
+    }
+
+    li:not(.active):hover {
+      background: #eee;
+    }
+  }
+}
+
+#aboutContent {
+  position: relative;
+  float: left;
+
+  p {
+    text-indent: 20px;
+    padding-top: 20px;
+  }
+}
+
+.sidebarItem.active {
+  color: #ffe6ff;
+}
+
+.sidebarItem.elize.active {
+  background: #1a67a3;
+}
+
+.sidebarItem.nyxart.active {
+  background: #4a7da5;
+}
+
+.sidebarItem.attrs.active {
+  background: #a1c3dd;
+}

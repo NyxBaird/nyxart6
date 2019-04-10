@@ -5,57 +5,7 @@
 @endsection
 
 @section('assets-header')
-    <style>
-        #frontendContent {
-            margin: auto;
-        }
-
-        #sidebar {
-            position: relative;
-            float: left;
-            border-right: solid 1px #ccc;
-            height: 100%;
-            padding: 0;
-        }
-
-        #sidebar > ul {
-            list-style: none;
-            padding: 0px;
-            font-size: 20px;
-        }
-
-        #sidebar > ul > li {
-            border-bottom: 1px solid #ccc;
-            padding: 10px 30px 10px 30px;
-            cursor: pointer;
-        }
-
-        #sidebar > ul > li:not(.active):hover {
-            background: #eee;
-        }
-
-        #aboutContent {
-            position: relative;
-            float: left;
-        }
-
-        #aboutContent > p {
-            text-indent: 20px;
-            padding-top: 20px;
-        }
-
-        .sidebarItem.elize.active {
-            background: #ffadad;
-        }
-
-        .sidebarItem.nyxart.active {
-            background: #fff9ad;
-        }
-
-        .sidebarItem.attrs.active {
-            background: #adccff;
-        }
-    </style>
+    <link href="{{ asset('css/about.css') }}" rel="stylesheet" />
 @append
 
 @section('content-title')
