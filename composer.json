@@ -23,6 +23,7 @@
             "App\\": "app/",
             "Domain\\": "app/Domain/",
             "Services\\": "app/Services/",
+            "Libraries\\": "app/Libraries/",
             "Enums\\": "app/Enums/",
             "Illuminate\\": "src/Illuminate/"
         }

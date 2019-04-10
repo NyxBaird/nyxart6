@@ -1,0 +1,69 @@
+.spirit {
+  position: fixed;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#spiritBG {
+  z-index: 9998;
+  background: black;
+  opacity: 0.8;
+}
+
+#spiritFG {
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  color: white;
+  z-index: 9999;
+}
+
+#howToClose {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+
+  font-size: 14px;
+  font-style: oblique;
+}
+
+#spiritInput {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 20px;
+
+  input {
+    width: calc(100% - 15px);
+    color: black;
+  }
+}
+
+#spiritContent {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  max-height: calc(100% - 70px);
+  padding: 25px 30px 0 70px;
+  margin: auto;
+  font-size: 20px;
+  overflow-y: auto;
+  text-indent: -40px;
+}
+
+#spiritContent::-webkit-scrollbar-track {
+  background-color: #F5F5F5;
+}
+
+#spiritContent::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#spiritContent::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border: 2px solid #555555;
+}

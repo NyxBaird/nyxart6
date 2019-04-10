@@ -39,13 +39,14 @@ class SpiritController extends Controller
         $command = $request->input('command');
 
         //If this is a request for help...
-        if ($this->service->checkForHelp($command)) {
+        if ($this->service->checkForHelp($command))
             return response()->json($this->service->parseHelp($command));
-        }
 
         //If this is a valid command...
-        if ($issued = $this->service->grabCommand(explode(' ', $command)[0])) {
+        if ($issued = $this->service->grabCommand(explode(' ', $command)[0]))
             return response()->json($this->service->commandHandler($issued, $command));
-        }
+
+        //If this is neither, it must be a message for spirit to process
+        dd($this->service->conversationHandler($command));
     }
 }

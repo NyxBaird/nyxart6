@@ -13,6 +13,10 @@
  */
 class HomeService
 {
+    /**
+     * @param bool $key
+     * @return array|mixed
+     */
     public function viewData($key = false)
     {
         $colors = [
@@ -28,7 +32,7 @@ class HomeService
         $color = $colors[array_rand($colors, 1)];
 
         $return = [
-            'version' => '6.0.1',
+            'version' => '7.0.1',
             'color' => $color
         ];
 

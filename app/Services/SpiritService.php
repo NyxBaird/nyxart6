@@ -9,6 +9,7 @@
 
 use Domain\Spirit\Command;
 use Domain\Spirit\ResponseType;
+use Libraries\SpiritConversationParser;
 
 /**
  * Class SpiritService
@@ -22,96 +23,30 @@ class SpiritService extends Service
     protected $model;
 
     /**
+     * @var SpiritConversationParser
+     */
+    protected $parser;
+
+    /**
      * SpiritService constructor.
      * @param Command $model
      */
     public function __construct(Command $model)
     {
         $this->model = $model;
+        $this->parser = new SpiritConversationParser();
     }
 
     /**
-     * @param $command
-     * @return array
+     * @param $cmd
+     * @return \Illuminate\Database\Eloquent\Model|null|static
      */
-    public function parseHelp($command)
+    public function grabCommand($cmd)
     {
-        $response = '';
-        $responseType = ResponseType::neutral();
-        $pieces = explode(' ', $command);
+        if (!$cmd)
+            return false;
 
-        if (!isset($pieces[1]) || $pieces[1] == '') {
-            //General help here
-            if ($user = auth()->user()) {
-                $commandList = Command::where('level', '<=', $user->level)->get();
-            } else {
-                $commandList = Command::where('level', 0)->get();
-            }
-
-            $response .= "Below is a list of all the commands you can access. Type \"(command) ?\" for more information on each command.<br />";
-
-            foreach ($commandList as $cl) {
-                $parameters = explode(',', $cl->parameters);
-
-                $response .= '<br />';
-                $response .= '<b style="color: green">' . $cl->name;
-
-                foreach ($parameters as $p) {
-                    $p = explode('|', $p);
-                    $response .= ' -' . $p[0] . ' (' . $p[1] . ')';
-                }
-
-                $response .= '</b>';
-            }
-
-            $response .= '<br /><br />Parenthesis "()" denote where a parameter should go and should be left out of the final command. Here\'s an example of what one should enter to use the "register" command: "register -u NewUser -e email@address.com -p uncrackablePassword"<br />
-                <br />
-                Upcoming Spirit functionality: <br />
-                -Spirit chat<br />
-                -More complex command structures';
-
-            return ['type' => $this->applyImpact($responseType, auth()->user()), 'response' => $response];
-        } else {
-            $cmd = $this->grabCommand($pieces[0]);
-
-            //If we have a valid command and permission to use it...
-            if ($cmd && ((!auth()->user() && $cmd->level == 0) || (auth()->user() && $cmd->level <= auth()->user()->level))) {
-                $parameters = explode(',', $cmd->parameters);
-                $requiredParams = explode('|', $cmd->required_parameters);
-                $aliases = $cmd->aliases ? explode('|', $cmd->aliases) : [];
-
-                /**
-                 * Build our response
-                 */
-                $response .= "You can use the \"{$pieces[0]}\" command like this;<br />
-                                {$cmd->name} ";
-
-                foreach ($parameters as $p) {
-                    $param = explode('|', $p);
-
-                    $response .= "-{$param[0]} ({$param[1]}) ";
-                }
-
-                $response .= "<br /><br />Required Parameters: -" . join(', -', $requiredParams);
-
-                if (count($aliases)) {
-                    $response .= "<br />Optional Aliases: " . join(', ', $aliases);
-                }
-
-                $response .= "<br />Description: " . $cmd->description;
-
-                return ['type' => $this->applyImpact($responseType, auth()->user()), 'response' => $response];
-
-            //If someone's trying to access a command they don't have permission to access.
-            } else if ($cmd) {
-                $responseType = ResponseType::error();
-
-                return ['type' => $this->applyImpact($responseType), 'response' => 'I was unable to find help on the given topic.'];
-            }
-        }
-
-        //Fails if we hit this point- ignore the impact from errors on help
-        return ['type' => ResponseType::error(), 'response' => 'I was unable to find help on the given topic.'];
+        return $this->model->where('name', $cmd)->orWhere('aliases', 'LIKE', "%$cmd%")->first();
     }
 
     /**
@@ -159,7 +94,10 @@ class SpiritService extends Service
         if (!empty($requiredParams)) {
             $responseType = ResponseType::error();
 
-            return ['type' => $this->applyImpact($responseType), 'response' => 'Required parameters are missing!'];
+            return [
+                'type' => $this->parser->applyImpact($responseType),
+                'response' => 'Required parameters are missing!'
+            ];
         }
 
         //All hooks are in services, add the required namespacing here
@@ -167,29 +105,6 @@ class SpiritService extends Service
         $service = new $hook[0]($this);
 
         return $service->{$hook[1]}($params);
-    }
-
-    /**
-     * @param ResponseType $type
-     * @param $user
-     * @param int $modifier
-     * @return ResponseType
-     */
-    public function applyImpact(ResponseType $type, $user = false, $modifier = 0)
-    {
-        if (!$user) {
-            $user = auth()->user();
-        }
-
-        if (!$user && $type->base_impact + $modifier <= 10) {
-            return $type;
-        } else if (!$user) {
-            //WIP: Apply negative impact to session
-        }
-        //wip work out impact for user
-
-        //Temporary return for if we're logged in and still need a type
-        return $type;
     }
 
     /**
@@ -212,11 +127,107 @@ class SpiritService extends Service
     }
 
     /**
-     * @param $cmd
-     * @return \Illuminate\Database\Eloquent\Model|null|static
+     * @param $command
+     * @return array
      */
-    public function grabCommand($cmd)
+    public function parseHelp($command)
     {
-        return $this->model->where('name', $cmd)->orWhere('aliases', 'LIKE', "%$cmd%")->first();
+        $response = '';
+        $responseType = ResponseType::neutral();
+        $pieces = explode(' ', $command);
+
+        if (!isset($pieces[1]) || $pieces[1] == '') {
+            //General help here
+            if ($user = auth()->user()) {
+                $commandList = Command::where('level', '<=', $user->level)->get();
+            } else {
+                $commandList = Command::where('level', 0)->get();
+            }
+
+            $response .= "Below is a list of all the commands you can access. Type \"(command) ?\" for more information on each command.<br />";
+
+            foreach ($commandList as $cl) {
+                $parameters = explode(',', $cl->parameters);
+
+                $response .= '<br />';
+                $response .= '<b style="color: green">' . $cl->name;
+
+                foreach ($parameters as $p) {
+                    $p = explode('|', $p);
+                    $response .= ' -' . $p[0] . ' (' . $p[1] . ')';
+                }
+
+                $response .= '</b>';
+            }
+
+            $response .= '<br /><br />Parenthesis "()" denote where a parameter should go and should be left out of the final command. Here\'s an example of what one should enter to use the "register" command: "register -u NewUser -e email@address.com -p uncrackablePassword"<br />
+                <br />
+                Upcoming Spirit functionality: <br />
+                -Spirit chat<br />
+                -More complex command structures';
+
+            return [
+                'type' => $this->parser->applyImpact($responseType, auth()->user()),
+                'response' => $response
+            ];
+        } else {
+            $cmd = $this->grabCommand($pieces[0]);
+
+            //If we have a valid command and permission to use it...
+            if ($cmd && ((!auth()->user() && $cmd->level == 0) || (auth()->user() && $cmd->level <= auth()->user()->level))) {
+                $parameters = explode(',', $cmd->parameters);
+                $requiredParams = explode('|', $cmd->required_parameters);
+                $aliases = $cmd->aliases ? explode('|', $cmd->aliases) : [];
+
+                /**
+                 * Build our response
+                 */
+                $response .= "You can use the \"{$pieces[0]}\" command like this;<br />
+                                {$cmd->name} ";
+
+                foreach ($parameters as $p) {
+                    $param = explode('|', $p);
+
+                    $response .= "-{$param[0]} ({$param[1]}) ";
+                }
+
+                $response .= "<br /><br />Required Parameters: -" . join(', -', $requiredParams);
+
+                if (count($aliases)) {
+                    $response .= "<br />Optional Aliases: " . join(', ', $aliases);
+                }
+
+                $response .= "<br />Description: " . $cmd->description;
+
+                return [
+                    'type' => $this->parser->applyImpact($responseType, auth()->user()),
+                    'response' => $response
+                ];
+
+                //If someone's trying to access a command they don't have permission to access.
+            } else if ($cmd) {
+                $responseType = ResponseType::error();
+
+                return [
+                    'type' => $this->parser->applyImpact($responseType),
+                    'response' => 'I was unable to find help on the given topic.'
+                ];
+            }
+        }
+
+        //Fails if we hit this point- ignore the impact from errors on help
+        return [
+            'type' => ResponseType::error(),
+            'response' => 'I was unable to find help on the given topic.'
+        ];
+    }
+
+    /**
+     * This really only exists to bridge the gap between our controller and conversation parser
+     *
+     * @param $command
+     */
+    public function conversationHandler($command) {
+
     }
 }

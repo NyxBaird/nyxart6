@@ -18,4 +18,5 @@ mix.js('resources/assets/js/app.js', 'public/js').sass('resources/assets/sass/ap
 //page specific resources
 mix.sass('resources/assets/sass/home.scss', 'public/css');
 mix.sass('resources/assets/sass/hamburger.scss', 'public/css').sass('resources/assets/sass/blog.scss', 'public/css');
-mix.sass('resources/assets/sass/about.scss', 'public/css')
+mix.sass('resources/assets/sass/about.scss', 'public/css');
+mix.sass('resources/assets/sass/spirit.scss', 'public/css').js('resources/assets/js/spirit.js', 'public/js');
