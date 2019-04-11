@@ -47,6 +47,6 @@ class SpiritController extends Controller
             return response()->json($this->service->commandHandler($issued, $command));
 
         //If this is neither, it must be a message for spirit to process
-        dd($this->service->conversationHandler($command));
+        return $this->service->conversationHandler($command);
     }
 }

@@ -8,5 +8,9 @@
   "/css/frontend.css": "/css/frontend.css",
   "/css/about.css": "/css/about.css",
   "/js/spirit.js": "/js/spirit.js",
-  "/css/spirit.css": "/css/spirit.css"
+  "/css/spirit.css": "/css/spirit.css",
+  "/js/frontend.js": "/js/frontend.js",
+  "/css/development.css": "/css/development.css",
+  "/js/blog.js": "/js/blog.js",
+  "/js/about.js": "/js/about.js"
 }

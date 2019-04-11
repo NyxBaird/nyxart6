@@ -1,8 +1,10 @@
+$headerHeight: 30px;
+
 #header {
   position: fixed;
   font-size: 20px;
   width: 100%;
-  height: 30px;
+  height: $headerHeight;
   z-index: 999;
 
   /*Defaults*/
@@ -11,6 +13,22 @@
   color: #000;
 }
 
+#title {
+  padding-left: 10px;
+}
+
+#frontendContent {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 30px);
+}
+
+
+/********************************
+ * Default Header Links Styling *
+ ********************************/
 #headerLinks {
   padding: 0;
 }
@@ -32,14 +50,57 @@
   border-bottom: 1px solid #ccc;
 }
 
-#title {
-  padding-left: 10px;
+/**********************************
+ * Minimized Header Links Styling *
+ **********************************/
+#headerLinks.minimized {
+  position: absolute;
+  top: $headerHeight - 1px;
+  right: 0;
+  min-width: 33%;
+  z-index: 800;
+
+  li {
+    display: block;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  i {
+    z-index: 5000;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: $headerHeight;
+    font-size: 25px;
+    padding: 5px;
+  }
+
+  $notch: 10px;
+  .linksNotch {
+    position: fixed;
+    top: $headerHeight;
+    right: $notch / 2 + 1;
+    width: 0;
+    height: 0;
+    border-left: $notch solid transparent;
+    border-right: $notch solid transparent;
+    border-top: $notch solid #fff;
+  }
+
+  .linkMinimizer {
+    display: none;
+  }
 }
 
-#frontendContent {
-  position: absolute;
-  top: 30px;
-  left: 0;
-  width: 100%;
-  height: calc(100% - 30px);
+/*Mobile Styling*/
+@media only screen and (max-device-width: 480px) {
+  #headerLinks.minimized {
+    position: fixed;
+    top: $headerHeight;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }

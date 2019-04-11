@@ -5,9 +5,7 @@
 @endsection
 
 @section('assets-header')
-    <style>
-
-    </style>
+    <link href="{{asset('css/development.css')}}" rel="stylesheet" />
 @append
 
 @section('content-title')
@@ -19,8 +17,6 @@
 @endsection
 
 @section('assets-footer')
-    <script>
-        
-    </script>
+    <script src="{{asset('js/spirit.js')}}"></script>
 @endsection
 

@@ -10,7 +10,7 @@
 @append
 
 @section('content')
-    <div id="header">
+    <div id="header" class="minimized">
         @yield('menu')<div id="title" class="pull-left">@yield('content-title')</div>
 
         <div id="headerLinks" class="pull-right">
@@ -24,6 +24,9 @@
                     </li>
                 @endforeach
             </ul>
+
+            <i class="linkMinimizer fa fa-link"></i>
+            <div class="linkMinimizer linksNotch"></div>
         </div>
     </div>
 
@@ -36,3 +39,6 @@
     @include('layouts.spirit')
 @endsection
 
+@section('assets-footer')
+    <script src="{{asset('js/frontend.js')}}"></script>
+@append

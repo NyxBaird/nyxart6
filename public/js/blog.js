@@ -63,86 +63,22 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 53);
+/******/ 	return __webpack_require__(__webpack_require__.s = 56);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 14:
+/***/ 11:
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: SyntaxError: Expecting Unicode escape sequence \\uXXXX (60:1)\n\n\u001b[0m \u001b[90m 58 | \u001b[39m            \u001b[36mvar\u001b[39m $marquee \u001b[33m=\u001b[39m $(\u001b[32m'#title'\u001b[39m)\u001b[33m.\u001b[39mchildren(\u001b[32m'marquee'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m,\u001b[39m\n \u001b[90m 59 | \u001b[39m                title \u001b[33m=\u001b[39m $marquee\u001b[33m.\u001b[39mhtml()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 60 | \u001b[39m\u001b[37m\u001b[41m\u001b[1m\\\u001b[22m\u001b[49m\u001b[39m\n \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 61 | \u001b[39m            $marquee\u001b[33m.\u001b[39mremove()\u001b[33m;\u001b[39m\n \u001b[90m 62 | \u001b[39m            $(\u001b[32m'#title'\u001b[39m)\u001b[33m.\u001b[39mhtml(title)\u001b[33m;\u001b[39m\n \u001b[90m 63 | \u001b[39m        }\u001b[0m\n");
 
 /***/ }),
 
-/***/ 15:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 16:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 17:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 18:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 19:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 20:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 21:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 22:
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 53:
+/***/ 56:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(22);
-__webpack_require__(20);
-__webpack_require__(21);
-__webpack_require__(14);
-__webpack_require__(15);
-__webpack_require__(16);
-__webpack_require__(17);
-__webpack_require__(18);
-module.exports = __webpack_require__(19);
+module.exports = __webpack_require__(11);
 
 
 /***/ })

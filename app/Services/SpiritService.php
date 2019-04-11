@@ -228,6 +228,9 @@ class SpiritService extends Service
      * @param $command
      */
     public function conversationHandler($command) {
-
+        return [
+            'type' => ResponseType::neutral(),
+            'response' => '...'
+        ];
     }
 }
