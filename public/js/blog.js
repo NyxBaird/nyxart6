@@ -71,7 +71,70 @@
 /***/ 11:
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: SyntaxError: Expecting Unicode escape sequence \\uXXXX (60:1)\n\n\u001b[0m \u001b[90m 58 | \u001b[39m            \u001b[36mvar\u001b[39m $marquee \u001b[33m=\u001b[39m $(\u001b[32m'#title'\u001b[39m)\u001b[33m.\u001b[39mchildren(\u001b[32m'marquee'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m,\u001b[39m\n \u001b[90m 59 | \u001b[39m                title \u001b[33m=\u001b[39m $marquee\u001b[33m.\u001b[39mhtml()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 60 | \u001b[39m\u001b[37m\u001b[41m\u001b[1m\\\u001b[22m\u001b[49m\u001b[39m\n \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 61 | \u001b[39m            $marquee\u001b[33m.\u001b[39mremove()\u001b[33m;\u001b[39m\n \u001b[90m 62 | \u001b[39m            $(\u001b[32m'#title'\u001b[39m)\u001b[33m.\u001b[39mhtml(title)\u001b[33m;\u001b[39m\n \u001b[90m 63 | \u001b[39m        }\u001b[0m\n");
+
+//Once the page is done loading
+$(document).ready(function () {
+    collapseMenu();
+    checkForTitleScroll();
+
+    //Look for a link containing our current url
+    var $target = $('a[href="' + window.location.href + '"]');
+
+    //If that link exists toggle that link open in the sidebar, else toggle the first link in the sidebar
+    if ($target.length) $target.parent().toggleClass('active').parent('ul').toggleClass('active').parent().toggleClass('active');else $('#sidebarContent > ol > li > ul > li').first().toggleClass('active').parents('.year').first().click();
+});
+
+$(window).resize(function () {
+    checkForTitleScroll();
+});
+
+$('.blogLinkLi').click(function (e) {
+    window.location = $('a', $(e.target)).attr('href');
+});
+
+$('#frontendContent').click(function (e) {
+    if ($('#sidebar').position().left === 0 && !$(e.target).parents('#sidebar').length) collapseMenu();
+});
+
+$('#menuBurger').click(function (e) {
+    e.preventDefault();
+
+    if (this.classList.contains("active") === true) collapseMenu();else expandMenu();
+});
+
+$('#sidebarContent .year').on('click', function () {
+    if (!$(this).hasClass('active')) $('.year.active').first().find('ul').first().toggleClass('active').parent().toggleClass('active');
+
+    $(this).find('ul').first().toggleClass('active').parent().toggleClass('active');
+});
+
+function checkForTitleScroll() {
+    if ($('#title')[0].offsetLeft + $('#title')[0].offsetWidth > $('#header')[0].offsetWidth - $('#header')[0].offsetHeight && !$('marquee', $('#title')).length) {
+        var title = $('#title').html(),
+            titleW = $('#title').offsetWidth;
+
+        $('#title').css({ width: titleW + 'px' });
+        $('#title').html("<marquee align='left' speed='3' style='width: 100%;'>" + title + "</marquee>");
+    } else {
+        if ($('marquee', $('#title')).length) {
+            var $marquee = $('#title').children('marquee').first(),
+                title = $marquee.html();
+
+            $marquee.remove();
+            $('#title').html(title);
+        }
+    }
+}
+
+function collapseMenu() {
+    $('#menuBurger').removeClass("active");
+    $('#sidebar').animate({ left: '-' + ($('#sidebar').width() - 1) + 'px' });
+}
+
+function expandMenu() {
+    $('#menuBurger').addClass("active");
+    $('#sidebar').animate({ left: '0' });
+}
 
 /***/ }),
 

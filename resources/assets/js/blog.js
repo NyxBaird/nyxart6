@@ -57,7 +57,7 @@ function checkForTitleScroll() {
         if ($('marquee', $('#title')).length) {
             var $marquee = $('#title').children('marquee').first(),
                 title = $marquee.html();
-\
+
             $marquee.remove();
             $('#title').html(title);
         }
